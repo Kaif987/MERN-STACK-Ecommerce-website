@@ -10,7 +10,8 @@ module.exports = {
       },
       backgroundColor:{
         "grayish": "#F5F5F5",
-        "btn-black": "#333333"
+        "btn-black": "#333333",
+        "transparent-img": "rgba(255, 255, 255, 0.53)"
       }
     },
   },

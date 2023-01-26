@@ -4,10 +4,24 @@ import User from "../Images/User.svg"
 import back_icon from "../Images/back-icon.svg"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import axios from "axios"
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const axiosInstance = axios.create({
+        baseURL: "http://localhost:5000"
+    })
+
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        axiosInstance.post("/api/register", {email, password})
+            .then(res => {
+                console.log(res)
+            })
+            .catch(error => alert("Error" + error))
+    }
 
     return ( 
         <div>
