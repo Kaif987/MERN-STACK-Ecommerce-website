@@ -6,8 +6,10 @@ import search from "../Images/search.svg"
 import User from "../Images/User.svg"
 import favorite from "../Images/favorite.svg"
 import {Link} from "react-router-dom"
+import WishListItem from "./wishListItem"
 
-const MyWishList = () => {
+const MyWishList = ({favorites, handleToggle, addToCart}) => {
+    console.log(favorites)
     const dateToday = new Date()
     return ( 
         <div>
@@ -20,12 +22,19 @@ const MyWishList = () => {
                     <img src={cart} alt="cart" />
                 </button>
             </nav>
-
             <div className="mt-28 ">
-                <h1 className="text-2xl text-center">My Wishlist</h1>    
-                {`${dateToday.toLocaleString('default', { month: 'long' })} ${dateToday.getFullYear()}`}
+                <h1 className="text-2xl text-center mb-6">My Wishlist</h1>    
+                <span className="text-sm ">
+                    {`${dateToday.toLocaleString('default', { month: 'long' })} ${dateToday.getFullYear()}`}
+                </span>
+            </div>
+            <div className="flex flex-col mb-20">
+                {
+                    favorites.map((item,index) =>{
+                        return <WishListItem key={index} item={item} addToCart={addToCart} handleToggle={handleToggle}/>
+                    })
+                }
             </div>            
-
             <footer className="fixed left-0 bottom-0 py-6 flex justify-around w-full bg-white">
                 <Link to= "/homepage" ><img src={home} alt="home" /></Link >
                 <Link to= "/search" ><img src={search} alt="search" /></Link >

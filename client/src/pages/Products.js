@@ -3,7 +3,7 @@ import logo from "../Images/logo.png"
 import cart from "../Images/cart.svg"
 import filter from '../Images/filter.svg'
 import Product from "./Product" 
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import home from "../Images/Home.svg"
 import search from "../Images/search.svg"
 import User from "../Images/User.svg"
@@ -11,18 +11,9 @@ import favorite from "../Images/favorite.svg"
 import { Link, useParams } from "react-router-dom"
 
 
-const Products = () => {
+const Products = ({favorites, handleToggle}) => {
     const [productsState, setProductsState] = useState([])
     const {category}= useParams()
-    const [favorites, setFavorites] = useState([])
-
-    const handleToggle = (item) =>{
-        if(favorites.includes(item)){
-            setFavorites(favorites.filter(i => i !== item))
-        }else{
-            setFavorites(prev => [...prev, item])
-        }
-    }
 
     useEffect(() =>{
         fetch("https://fakestoreapi.com/products/category/" + category)
@@ -33,7 +24,6 @@ const Products = () => {
             })
     },[])
 
-    console.log(productsState)
 
     return ( 
         <div>
@@ -69,7 +59,7 @@ const Products = () => {
             <footer className="fixed left-0 bottom-0 py-6 flex justify-around w-full bg-white">
                 <Link to= "/homepage" ><img src={home} alt="home" /></Link >
                 <Link to= "/search" ><img src={search} alt="search" /></Link >
-                <Link to= "/favorite" ><img src={favorite} alt="favorite" /></Link >
+                <Link to= "/wishlist" ><img src={favorite} alt="favorite" /></Link >
                 <Link to= "/profile" ><img src={User} alt="User" /></Link >
             </footer>
         </div>

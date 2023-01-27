@@ -14,7 +14,8 @@ module.exports = {
         "transparent-img": "rgba(255, 255, 255, 0.53)",
       },
       textColor:{
-        "title":"#6F7F8A"
+        "title":"#6F7F8A",
+        "wishlist-title": "#333A3A"
       },
       borderColor:{
         "grayish": "#CCCCCC"

@@ -53,7 +53,7 @@ const HomePage = () => {
             <footer className="fixed left-0 bottom-0 py-6 flex justify-around w-full bg-white">
                 <Link to= "/homepage" ><img src={home} alt="home" /></Link >
                 <Link to= "/search" ><img src={search} alt="search" /></Link >
-                <Link to= "/favorite" ><img src={favorite} alt="favorite" /></Link >
+                <Link to= "/wishlist" ><img src={favorite} alt="wishlist" /></Link >
                 <Link to= "/profile" ><img src={User} alt="User" /></Link >
             </footer>
         </div>
