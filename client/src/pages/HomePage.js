@@ -11,6 +11,7 @@ import User from "../Images/User.svg"
 import favorite from "../Images/favorite.svg"
 import {Link} from "react-router-dom"
 
+
 const HomePage = () => {
     return ( 
         <div>
@@ -25,35 +26,35 @@ const HomePage = () => {
             </nav>
             <div className="mt-28 flex gap-4 mb-6">
                 <div className="w-full relative">
-                    <img src={her} className="w-full bg-cover"  alt="female clothing" />
+                    <img src={her} className="w-full bg-cover" alt="female clothing" />
                     <div className="absolute flex justify-center items-center  left-1/2 bottom-2 -translate-x-1/2 -translate-y-1/2 ">
-                        <Link to="#" className="bg-transparent-img text-center py-2 w-40 font-semibold uppercase border border-black">for her</Link>
+                        <Link to="/products/women's clothing" className="bg-transparent-img text-center py-2 w-40 font-semibold uppercase border border-black">for her</Link>
                     </div>
                 </div>
                 <div className="w-full relative">
                     <img src={him} className="w-full bg-cover"  alt="male clothing" />
                     <div className="absolute flex justify-center items-center  left-1/2 bottom-2 -translate-x-1/2 -translate-y-1/2 ">
-                        <Link to="#" className="bg-transparent-img text-center py-2 w-40 font-semibold uppercase border border-black">for him</Link>
+                        <Link to="/products/men's clothing" className="bg-transparent-img text-center py-2 w-40 font-semibold uppercase border border-black">for him</Link>
                     </div>
                 </div>
             </div>
             <div className="w-full relative">
                 <img src={jewelery} alt="jewelery" />
                 <div className="absolute flex justify-center items-center  left-1/2 bottom-1 -translate-x-1/2 -translate-y-1/2 ">
-                    <Link to="#" className="text-center py-2 text-2xl font-bold capitalize">Jewellery</Link>
+                    <Link to="/products/jewelery" className="text-center py-2 text-2xl font-bold capitalize">Jewellery</Link>
                 </div>
             </div>
             <div className="mt-6 relative">
                 <img src={electronics} className="" alt="electronics" />
                 <div className="absolute flex justify-center items-center  left-1/2 bottom-7 -translate-x-1/2 -translate-y-1/2 ">
-                    <Link to="#" className="text-center py-2 text-2xl font-bold capitalize ">Electronics</Link>
+                    <Link to="/products/electronics" className="text-center py-2 text-2xl font-bold capitalize ">Electronics</Link>
                 </div>
             </div>
             <footer className="fixed left-0 bottom-0 py-6 flex justify-around w-full bg-white">
-                <button><img src={home} alt="home" /></button>
-                <button><img src={search} alt="search" /></button>
-                <button><img src={favorite} alt="favorite" /></button>
-                <button><img src={User} alt="User" /></button>
+                <Link to= "/homepage" ><img src={home} alt="home" /></Link >
+                <Link to= "/search" ><img src={search} alt="search" /></Link >
+                <Link to= "/favorite" ><img src={favorite} alt="favorite" /></Link >
+                <Link to= "/profile" ><img src={User} alt="User" /></Link >
             </footer>
         </div>
     );

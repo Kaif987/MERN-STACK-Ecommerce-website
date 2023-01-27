@@ -1,7 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login"
-import Signup from "./pages/Signup"
+import Products from "./pages/Products";
+import Signup from "./pages/Signup";
+import Product from "./pages/Product";
+import MyWishList from "./pages/MyWishList";
 
 function App() {
   return (
@@ -9,7 +12,10 @@ function App() {
       <Routes>
         <Route path="/login" element= {<Login />} />
         <Route path="/signup" element= {<Signup />}/>
-        <Route path="/HomePage" element= {<HomePage />} />
+        <Route path="/homepage" element= {<HomePage />} />
+        <Route path="/products/:category" element= {<Products />} />
+        <Route path="/product" element= {<Product />} />
+        <Route path="/wishlist" element= {<MyWishList />} />
       </Routes>
     </div>
   );

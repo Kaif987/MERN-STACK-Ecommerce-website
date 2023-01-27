@@ -11,8 +11,14 @@ module.exports = {
       backgroundColor:{
         "grayish": "#F5F5F5",
         "btn-black": "#333333",
-        "transparent-img": "rgba(255, 255, 255, 0.53)"
-      }
+        "transparent-img": "rgba(255, 255, 255, 0.53)",
+      },
+      textColor:{
+        "title":"#6F7F8A"
+      },
+      borderColor:{
+        "grayish": "#CCCCCC"
+      },
     },
   },
   plugins: [],
