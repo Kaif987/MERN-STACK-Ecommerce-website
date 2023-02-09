@@ -7,60 +7,11 @@ import Product from "./pages/Product";
 import MyWishList from "./pages/MyWishList";
 import { useState } from "react";
 import Cart from "./pages/Cart";
+import useEcommerce from "./Hooks/useEcommerce";
 
 function App() {
-  const [favorites, setFavorites] = useState([])
-  const [cartItems, setCartItems] = useState([])
-
-  const handleToggle = (item) =>{
-    if(favorites.includes(item)){
-        setFavorites(favorites.filter(i => i !== item))
-    }else{
-        setFavorites(prev => [...prev, item])
-    }
-  }
-
-  // type {
-  //   item: Object,
-  //   count: Number;
-  // }[] 
-
-// + === {item: Object count: Number++}[]
-
-  const addToCart = (item) =>{
-    setCartItems(prev => [...prev, {item: item, count: 1}])
-  }
-
-  const removeFromCart = (item) =>{
-    setCartItems(cartItems.filter(i=> i.item !== item ))
-  }
-
-  const buySameItem = (item) =>{
-    setCartItems(prevCartItemObject =>{
-      return prevCartItemObject.map(i =>{
-        if(i.item === item){
-          return {item: item, count: i.count + 1}
-        }  
-        return i
-      })
-    })
-  }
-
-  const removeSameItem = (item) =>{
-    setCartItems(prevCartItemObject =>{
-      return prevCartItemObject.map(i =>{
-        if(i.item === item){
-          if(i.count > 1){
-            return {item: item, count: i.count - 1}
-          }else{
-            removeFromCart(item)
-          }
-        }  
-        return i
-      })
-    })
-  }
-
+  const {favorites, cartItems, handleToggle, addToCart, removeFromCart, buySameItem, removeSameItem} = useEcommerce()
+  
   return (
     <div className="App font-montserrat">
       <Routes>
