@@ -15,10 +15,12 @@ module.exports = {
       },
       textColor:{
         "title":"#6F7F8A",
-        "wishlist-title": "#333A3A"
+        "wishlist-title": "#333A3A",
+        "btn-black": "#333333",
       },
       borderColor:{
-        "grayish": "#CCCCCC"
+        "grayish": "#CCCCCC",
+        "filter-gray": "#E5E5E5"
       },
     },
   },

@@ -6,8 +6,13 @@ import search from "../Images/search.svg"
 import User from "../Images/User.svg"
 import favorite from "../Images/favorite.svg"
 import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { cartItemContext } from "../App"
 
 const Layout = ({children}) => {
+
+    const cartItems = useContext(cartItemContext)
+
     return ( 
         <div>
             <nav className="absolute left-0 top-0 pt-11 bg-white w-full p-4 flex justify-between shadow-md">
@@ -16,7 +21,8 @@ const Layout = ({children}) => {
                 </button>
                 <img src={logo} alt="logo" className="h-5"/>
                 <Link to={"/cart"}>
-                    <img src={cart} alt="cart" />
+                    <img src={cart} alt="cart" className="relative"/>
+                    <span className="absolute top-8 right-6 bg-red-500 rounded-3xl text-xs text-white w-4 text-center ">{cartItems}</span>
                 </Link>
             </nav>
             {children}
