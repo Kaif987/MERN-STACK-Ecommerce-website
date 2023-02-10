@@ -13,7 +13,7 @@ import { createContext } from "react";
 export const cartItemContext = createContext()
 
 function App() {
-  const {favorites, cartItems, handleToggle, addToCart, removeFromCart, buySameItem, removeSameItem} = useEcommerce()
+  const {favorites, cartItems, handleToggle, addToCart, removeFromCart, buySameItem, removeSameItem, filter, onFilterChange} = useEcommerce()
   const itemsCount = cartItems.reduce((acc, item) => acc + item.count, 0)
 
   return (
@@ -23,11 +23,11 @@ function App() {
           <Route path="/login" element= {<Login />} />
           <Route path="/signup" element= {<Signup />}/>
           <Route path="/homepage" element= {<HomePage />} />
-          <Route path="/products/:category" element= {<Products handleToggle={handleToggle} favorites={favorites} />} />
+          <Route path="/products/:category" element= {<Products filter={filter} handleToggle={handleToggle} favorites={favorites} />} />
           <Route path="/product" element= {<Product />} />
           <Route path="/cart" element= {<Cart cartItems={cartItems} buySameItem={buySameItem} removeSameItem={removeSameItem} />} />
           <Route path="/wishlist" element= {<MyWishList favorites={favorites} handleToggle={handleToggle} addToCart={addToCart} />} />
-          <Route path="/filter" element= {<Filter />} />
+          <Route path="/filter" element= {<Filter onFilterChange={onFilterChange} />} />
         </Routes>
       </cartItemContext.Provider>
     </div>
