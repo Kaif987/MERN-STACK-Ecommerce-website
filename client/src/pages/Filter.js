@@ -1,12 +1,9 @@
 import Close from "../Images/Close.svg"
 import {useState} from "react"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
 
-const Filter = ({onFilterChange}) => {
+const Filter = ({turnOffFilter, applyFilter }) => {
 
     const [selected ,setSelected] = useState()
-    const navigate = useNavigate()
     const onRadioChange = (e) =>{
         setSelected(e.target.value)
     }
@@ -15,7 +12,7 @@ const Filter = ({onFilterChange}) => {
         <div className="relative">
             <div className="flex justify-between">
                 <h1 className="font-medium text-2xl">Filter</h1>
-                <button onClick={() =>{navigate(-1)}}><img src={Close} alt="minimize button" /></button>
+                <button onClick={turnOffFilter}><img src={Close} alt="minimize button" /></button>
             </div>
             <div className="mt-7 border-b border-b-filter-gray pb-4">
                 <h3 className="text-base font-medium">Sort By</h3>
@@ -34,8 +31,8 @@ const Filter = ({onFilterChange}) => {
                 <button className="text-btn-black" onClick={() => setSelected(null)} >Clear All</button>
                 <button className="border border-black px-5 py-1"
                 onClick={() => {
-                    onFilterChange(selected)
-                    navigate(-1)
+                    applyFilter(selected)
+                    turnOffFilter()
                 }}
                 >Apply</button>
             </div>

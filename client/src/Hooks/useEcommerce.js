@@ -3,11 +3,6 @@ import { useState } from "react"
 const useEcommerce = () => {
     const [favorites, setFavorites] = useState([])
     const [cartItems, setCartItems] = useState([])
-    const [filter, setFilter] = useState(null)
-
-    const onFilterChange = (item) => {
-        setFilter(item)
-    }
 
     const handleToggle = (item) =>{
         if(favorites.includes(item)){
@@ -52,7 +47,7 @@ const useEcommerce = () => {
         })
     }
     
-    return {favorites, cartItems, handleToggle, addToCart, removeFromCart, buySameItem, removeSameItem, filter, onFilterChange}
+    return {favorites, cartItems, handleToggle, addToCart, removeFromCart, buySameItem, removeSameItem}
 }
  
 export default useEcommerce;
