@@ -1,7 +1,7 @@
 import Close from "../Images/Close.svg"
 import {useState} from "react"
 
-const Filter = ({turnOffFilter, applyFilter }) => {
+const Filter = ({isVisible, turnOffFilter, applyFilter }) => {
 
     const [selected ,setSelected] = useState()
     const onRadioChange = (e) =>{
@@ -9,7 +9,7 @@ const Filter = ({turnOffFilter, applyFilter }) => {
     }
 
     return (
-        <div className="relative">
+        <div className= {`relative ${isVisible ? "block" : "hidden"}`} >
             <div className="flex justify-between">
                 <h1 className="font-medium text-2xl">Filter</h1>
                 <button onClick={turnOffFilter}><img src={Close} alt="minimize button" /></button>

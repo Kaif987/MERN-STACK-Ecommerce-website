@@ -22,22 +22,29 @@ const Products = ({favorites, handleToggle}) => {
 
     console.log(filterValue)
 
-    if(filterValue){
-        // debugger
-        const productStateCopy = [...productsState]
-        switch(filterValue){
-            case "lowToHigh":
-                productStateCopy.sort((a,b) => a.price - b.price)
-                break
-            case "highToLow":
-                productStateCopy.sort((a,b) => b.price - a.price)
-                break
-        }
-        setProductsState(productStateCopy)
-    }
-
 
     useEffect(() =>{
+        // debugger
+        if(filterValue){
+            const productStateCopy = [...productsState]
+            switch(filterValue){
+                case "LowToHigh":
+                    productStateCopy.sort((a,b) => a.price - b.price)
+                    break
+                case "HighToLow":
+                    productStateCopy.sort((a,b) => b.price - a.price)
+                    break
+                default:
+                    break
+            }
+            setProductsState(productStateCopy)
+        }
+    }, [filterValue])
+
+    
+
+    useEffect(() =>{
+
         fetch("https://fakestoreapi.com/products/category/" + category)
             .then(res => res.json())
             .then(data => setProductsState(data))
@@ -49,34 +56,33 @@ const Products = ({favorites, handleToggle}) => {
 
     return ( 
         <>
-        {isVisible ?
-            <Filter turnOffFilter={turnOffFilter} applyFilter={applyFilter} />
-          : 
-            <Layout>
-                <div>
-                    <div className="mt-28 flex flex-col gap-2">
-                        <span className="capitalize text-sm">all products</span>
-                        <div className="border-2 border-black w-fit py-1 pl-2 pr-3">
-                            <button onClick={() => setIsVisible(true)} className="flex items-center gap-2"><img src={filterSvg} alt="filter" />
-                            <span className="font-medium">Filter</span>
-                            </button>
-                        </div>    
-                    </div>
+            <Filter isVisible={isVisible} turnOffFilter={turnOffFilter} applyFilter={applyFilter} />
+            <div className={`${!isVisible ? "block": "hidden"}`}>
+                <Layout>
+                    <div>
+                        <div className="mt-28 flex flex-col gap-2">
+                            <span className="capitalize text-sm">all products</span>
+                            <div className="border-2 border-black w-fit py-1 pl-2 pr-3">
+                                <button onClick={() => setIsVisible(true)} className="flex items-center gap-2"><img src={filterSvg} alt="filter" />
+                                <span className="font-medium">Filter</span>
+                                </button>
+                            </div>    
+                        </div>
 
-                    <div className="mt-3 mb-32 grid grid-cols-2 auto-rows-fr">
-                    {
-                        productsState && productsState.map(product =>{
-                            return <Product key={product.id }
-                            product = {product}
-                            handleToggle = {handleToggle}
-                            isFavorite={favorites.includes(product)}
-                            />
-                        })
-                    }
+                        <div className="mt-3 mb-32 grid grid-cols-2 auto-rows-fr">
+                        {
+                            productsState && productsState.map(product =>{
+                                return <Product key={product.id }
+                                product = {product}
+                                handleToggle = {handleToggle}
+                                isFavorite={favorites.includes(product)}
+                                />
+                            })
+                        }
+                        </div>
                     </div>
-                </div>
-            </Layout>
-        }    
+                </Layout>
+            </div>
         </>
     );
 }
