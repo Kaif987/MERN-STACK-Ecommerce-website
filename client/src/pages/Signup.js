@@ -5,27 +5,20 @@ import back_icon from "../Images/back-icon.svg"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import useSignup from "../Hooks/useSignup"
 
 const Signup = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passwordError, setPasswordError] = useState("")
+    const {fetchUser, error, isLoading} = useSignup()
     const navigate = useNavigate()
 
-    const axiosInstance = axios.create({
-        baseURL: "http://localhost:5000"
-    })
-
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
         if(passwordError.length) return
-        axiosInstance.post("/api/register", {username, email, password})
-            .then(res => {
-                console.log(res)
-                navigate("/login")
-            })
-            .catch(error => alert("Error" + error))
+        await fetchUser(username, email, password)
     }
 
     const handlePasswordChange = (event) => {
@@ -91,11 +84,13 @@ const Signup = () => {
                 </div>
                 <input type="submit" 
                 className="block uppercase px-24 py-4 mx-auto my-20 bg-btn-black text-white hover:cursor-pointer"
+                disabled={isLoading}
                 value={"Sign Up"}/>
+                <div>{error}</div>
             </form>
             <footer className="text-center text-xs">
                 <p>Already have an account?</p>
-                <Link to={"/signup"}>Sign In</Link>
+                <Link to={"/login"}>Sign In</Link>
             </footer>
         </div>
     );

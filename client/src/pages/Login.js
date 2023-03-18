@@ -3,25 +3,20 @@ import lock from "../Images/lock.svg"
 import User from "../Images/User.svg"
 import back_icon from "../Images/back-icon.svg"
 import { useState } from "react"
-import { Link } from "react-router-dom"
-import axios from "axios"
+import { Link, useNavigate} from "react-router-dom"
+import useSignup from "../Hooks/useSignup"
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const {fetchUser, error, isLoading} = useSignup()
+    const navigate = useNavigate()
 
-    const axiosInstance = axios.create({
-        baseURL: "http://localhost:5000"
-    })
-
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
-        axiosInstance.post("/api/register", {email, password})
-            .then(res => {
-                console.log(res)
-            })
-            .catch(error => alert("Error" + error))
-    }
+        await fetchUser(email, password)
+        navigate("/homepage")        
+    }        
 
     return ( 
         <div>
@@ -31,7 +26,7 @@ const Login = () => {
                 </button>
                 <img src= {logo}  className="mx-auto my-24" alt="logo" />
             </div>
-            <form action="post">
+            <form action="post" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-5">
                     <div className="flex gap-4 border bg-grayish focus-within:border-black focus-within:border-2">
                         <img src= {User} alt="logo" 
