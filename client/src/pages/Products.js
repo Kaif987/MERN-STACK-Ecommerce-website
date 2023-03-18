@@ -83,7 +83,7 @@ const Products = ({favorites, handleToggle}) => {
                     </div>
                 </Layout>
             </div>
-        </>
+            </>
     );
 }
  
