@@ -37,7 +37,7 @@ const Cart = ({cartItems, buySameItem, removeSameItem}) => {
                 <div className="mb-20 bg-grayish p-2 text-sm">
                     <div className="flex justify-between">
                         <span className="after:content-[':'] text-wishlist-title" >Subtotal</span>
-                        <span className="font-semibold">{calculateSubTotal()}</span>
+                        <span className="font-semibold">{calculateSubTotal().toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                         <span className="after:content-[':'] text-wishlist-title" >Discount</span>

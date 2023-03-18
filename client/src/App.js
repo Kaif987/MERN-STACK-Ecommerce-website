@@ -4,6 +4,7 @@ import Login from "./pages/Login"
 import Products from "./pages/Products";
 import Signup from "./pages/Signup";
 import Product from "./pages/Product";
+import Search from './pages/Search'
 import MyWishList from "./pages/MyWishList";
 import { useState } from "react";
 import Cart from "./pages/Cart";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/product" element= {<Product />} />
           <Route path="/cart" element= {<Cart cartItems={cartItems} buySameItem={buySameItem} removeSameItem={removeSameItem} />} />
           <Route path="/wishlist" element= {<MyWishList favorites={favorites} handleToggle={handleToggle} addToCart={addToCart} />} />
+          <Route path="/search" element= {<Search />} />
         </Routes>
       </cartItemContext.Provider>
     </div>
