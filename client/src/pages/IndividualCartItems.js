@@ -1,5 +1,8 @@
-import { useState } from "react";
-const IndividualCartItems = ({item, count, buySameItem, removeSameItem}) => {
+import useCartAction from "../Hooks/useCartAction";
+
+const   IndividualCartItems = ({item}) => {
+
+    const {increaseQuantity, decreaseQuantity, removeFromCart} = useCartAction()
 
     return ( 
         <div className="h-32 flex bg-grayish p-3 gap-3 ">
@@ -13,11 +16,11 @@ const IndividualCartItems = ({item, count, buySameItem, removeSameItem}) => {
             </div>
             <div className="flex flex-col flex-[1_0_0] justify-between items-center">
                 <button
-                onClick={() => buySameItem(item)}
+                onClick={() => increaseQuantity(item)}
                 className="bg-white px-3 py-1 rounded-lg border-2">+</button>
-                <span className="text-wishlist-title text-sm">{count}</span>
+                <span className="text-wishlist-title text-sm">{item.count}</span>
                 <button
-                onClick={() => removeSameItem(item)}
+                onClick={() => (item.count > 1) ? decreaseQuantity(item) : removeFromCart(item._id)}
                 className="bg-white px-3 py-1 rounded-lg border-2">-</button>
             </div>
         </div>

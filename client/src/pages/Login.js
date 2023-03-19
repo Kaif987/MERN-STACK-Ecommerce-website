@@ -4,12 +4,12 @@ import User from "../Images/User.svg"
 import back_icon from "../Images/back-icon.svg"
 import { useState } from "react"
 import { Link, useNavigate} from "react-router-dom"
-import useSignup from "../Hooks/useSignup"
+import useLogin from "../Hooks/useLogin"
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const {fetchUser, error, isLoading} = useSignup()
+    const {fetchUser, error, isLoading} = useLogin()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) =>{

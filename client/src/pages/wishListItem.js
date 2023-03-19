@@ -1,4 +1,9 @@
-const WishListItem = ({item, handleToggle, addToCart}) => {
+import useCartAction from "../Hooks/useCartAction";
+
+const WishListItem = ({item, handleToggle}) => {
+
+    const {addToCart} = useCartAction()
+
     return ( 
         <div className="bg-grayish px-3 pt-5 mt-4">
             <div className="relative flex gap-2 border-b pb-2">

@@ -24,7 +24,6 @@ const Products = ({favorites, handleToggle}) => {
 
 
     useEffect(() =>{
-        // debugger
         if(filterValue){
             const productStateCopy = [...productsState]
             switch(filterValue){

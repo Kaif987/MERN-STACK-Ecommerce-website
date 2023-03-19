@@ -9,7 +9,7 @@ import {Link} from "react-router-dom"
 import WishListItem from "./wishListItem"
 import Layout from "./Layout"
 
-const MyWishList = ({favorites, handleToggle, addToCart}) => {
+const MyWishList = ({favorites, handleToggle}) => {
     console.log(favorites)
     const dateToday = new Date()
     return ( 
@@ -24,7 +24,7 @@ const MyWishList = ({favorites, handleToggle, addToCart}) => {
             <div className="flex flex-col mb-20">
                 {
                     favorites.map((item,index) =>{
-                        return <WishListItem key={index} item={item} addToCart={addToCart} handleToggle={handleToggle}/>
+                        return <WishListItem key={index} item={item} handleToggle={handleToggle}/>
                     })
                 }
             </div>            

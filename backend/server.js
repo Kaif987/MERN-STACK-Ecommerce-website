@@ -3,12 +3,14 @@ const express = require('express')
 const mongoose = require("mongoose")
 const authRoutes = require("./routes/auth")
 const cartRoutes = require("./routes/cart")
+const cors = require("cors")
 
 const app = express()
 
 
 // middleware
 app.use(express.json())
+app.use(cors())
 
 const port = process.env.PORT || 5000
 const URI = process.env.ATLAS_URI
