@@ -7,6 +7,7 @@ import Product from "./pages/Product";
 import Search from './pages/Search'
 import MyWishList from "./pages/MyWishList";
 import Cart from "./pages/Cart";
+import Profile from "./pages/Profile"
 import useEcommerce from "./Hooks/useEcommerce";
 import { useUserContext } from "./Hooks/useUserContext";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/cart" element= {user ? <Cart /> : <Navigate to="/login" />} />
           <Route path="/wishlist" element= {user ? <MyWishList favorites={favorites} handleToggle={handleToggle} /> : <Navigate to="/login" />} />
           <Route path="/search" element= {user ? <Search /> : <Navigate to="/login" />} />
+          <Route path="/profile" element= {user ? <Profile /> : <Navigate to="/login" />} />
           <Route path="*" element={user ? <Navigate to="/homepage" /> : <Navigate to="/login" /> } />
         </Routes>
     </div>

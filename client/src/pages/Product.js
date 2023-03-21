@@ -1,7 +1,3 @@
-import { useState } from "react";
-import star from "../Images/star.svg"
-import solid_star from "../Images/solid_star.svg"
-
 const Product = ({product, isFavorite, handleToggle}) => {
 
     

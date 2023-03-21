@@ -17,6 +17,7 @@ module.exports = {
         "title":"#6F7F8A",
         "wishlist-title": "#333A3A",
         "btn-black": "#333333",
+        "profile-btn": "#545660",
       },
       borderColor:{
         "grayish": "#CCCCCC",
