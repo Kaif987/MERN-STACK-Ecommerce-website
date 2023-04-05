@@ -1,18 +1,17 @@
-const Cart = require('../models/cartModel')
+const WishList = require('../models/wishListItemModel')
 const mongoose = require('mongoose')
 
 
-// get all cartItems
-const getCartItems = async (req, res) => {
+// get all wishListItems
+const getWishList = async (req, res) => {
   const user_id = req.user._id
-  const cartItems = await Cart.find({user_id}).sort({createdAt: -1})
-
-  res.status(200).json(cartItems)
+  const wishList = await WishList.find({user_id}).sort({createdAt: -1})
+  res.status(200).json(wishList)
 }
 
 
-const createCartItem = async (req, res) => {
-  const {title, image, price, count} = req.body
+const createWishListItem = async (req, res) => {
+  const {title, image, price} = req.body
 
   let emptyFields = []
 
@@ -25,10 +24,7 @@ const createCartItem = async (req, res) => {
   if(!price) {
     emptyFields.push('price')
   }
-  if(!count) {
-    emptyFields.push('count')
-  }
-
+  
   if(emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
   }
@@ -36,53 +32,53 @@ const createCartItem = async (req, res) => {
   // add doc to db
   try {
     const user_id = req.user._id 
-    const cartItem = await Cart.create({title, image, price, count, user_id})
-    res.status(200).json(cartItem)
+    const wishListItem = await WishList.create({title, image, price, user_id})
+    res.status(200).json(wishListItem)
   } catch (error) {
     res.status(400).json({error: error.message})
   }
 }
 
-// delete a cart Item
-const deleteCartItem = async (req, res) => {
+// delete a WishList Item
+const deleteWishListItem = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: 'No such cartItem'})
+    return res.status(404).json({error: 'No such WishListItem'})
   }
 
-  const cartItem = await Cart.findOneAndDelete({_id: id})
+  const wishListItem = await WishList.findOneAndDelete({_id: id})
 
-  if (!cartItem) {
-    return res.status(400).json({error: 'No such cartItem'})
+  if (!wishListItem) {
+    return res.status(400).json({error: 'No such WishListItem'})
   }
 
-  res.status(200).json(cartItem)
+  res.status(200).json(wishListItem)
 }
 
-// update a cartItem
-const updateCartItem = async (req, res) => {
+// update a wishListItem
+const updateWishListItem = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: 'No such cartItem'})
+    return res.status(404).json({error: 'No such WishListItem'})
   }
 
-  const cartItem = await Cart.findOneAndUpdate({_id: id}, {
+  const wishListItem = await WishList.findOneAndUpdate({_id: id}, {
     ...req.body
   })
 
-  if (!cartItem) {
-    return res.status(400).json({error: 'No such cartItem'})
+  if (!wishListItem) {
+    return res.status(400).json({error: 'No such WishListItem'})
   }
 
-  res.status(200).json(cartItem)
+  res.status(200).json(wishListItem)
 }
 
 
 module.exports = {
-  getCartItems,
-  createCartItem,
-  deleteCartItem,
-  updateCartItem
+  getWishList,
+  createWishListItem,
+  deleteWishListItem,
+  updateWishListItem
 }

@@ -1,12 +1,12 @@
 const express = require("express")
 const router = express.Router()
 const checkAuth = require("../middleware/checkAuth")
-const {getWishListItem, createWishListItem, deleteWishListItem, updateWishListItem} = require("../controller/wishListController")
+const {getWishList, createWishListItem, deleteWishListItem, updateWishListItem} = require("../controller/wishListController")
 
 
 router.use(checkAuth)
 
-router.get("/", getWishListItem)
+router.get("/", getWishList)
 
 router.post("/", createWishListItem)
 

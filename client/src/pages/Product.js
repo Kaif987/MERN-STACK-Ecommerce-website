@@ -1,13 +1,19 @@
-const Product = ({product, isFavorite, handleToggle}) => {
+import useWishListAction from "../Hooks/useWishListAction";
 
+const Product = ({product, isFavorite}) => {
+
+    const {addToWishList, deleteFromWishList} = useWishListAction()
+
+    const toggleFavorite = () => {
+        const {title, image, price, id} = product
+        isFavorite ? deleteFromWishList(id) : addToWishList(title, image, price)
+    }
     
     return ( 
         <div className="w-full h-full">
             <div className="relative h-full border px-4 pb-2 border-grayish ">
                 <button className="absolute left-3 top-3 "
-                onClick={() =>{ 
-                    handleToggle(product)
-                }}
+                onClick={toggleFavorite}
                 >
                     {isFavorite ?
                     <svg xmlns="http://www.w3.org/2000/svg"

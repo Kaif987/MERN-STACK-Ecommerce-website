@@ -4,8 +4,10 @@ import { useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom"
 import Layout from "./Layout"
 import Filter from './Filter';
+import { useWishListContext } from '../Hooks/useWishListContext';
 
-const Products = ({favorites, handleToggle}) => {
+const Products = () => {
+    const {wishlist} = useWishListContext()
     const [productsState, setProductsState] = useState([])
     const [isVisible, setIsVisible] = useState(false)
     const {category} = useParams()
@@ -20,7 +22,6 @@ const Products = ({favorites, handleToggle}) => {
         setIsVisible(false)
     }
 
-    console.log(filterValue)
 
 
     useEffect(() =>{
@@ -52,6 +53,14 @@ const Products = ({favorites, handleToggle}) => {
             })
     },[])
 
+    const isProductFavorite = (product) =>{
+        if(!wishlist) return false
+        const found = wishlist.find(item => item.title === product.title)
+        if(found) return true
+        return false
+    }
+
+
 
     return ( 
         <>
@@ -73,8 +82,7 @@ const Products = ({favorites, handleToggle}) => {
                             productsState && productsState.map(product =>{
                                 return <Product key={product.id }
                                 product = {product}
-                                handleToggle = {handleToggle}
-                                isFavorite={favorites.includes(product)}
+                                isFavorite={isProductFavorite(product)}
                                 />
                             })
                         }
