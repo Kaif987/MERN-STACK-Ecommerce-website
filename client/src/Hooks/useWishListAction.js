@@ -5,16 +5,15 @@ export default function useWishListAction() {
     const {user} = useUserContext()
     const { wishlist, dispatch } = useWishListContext();
     
-    const addToWishList = async (title, image, price) => {
+    const addToWishList = async (id, title, image, price) => {
         const response = await fetch(`http://localhost:5000/api/wishlist/`, {
             method: "POST",
             headers: {
+                "Content-Type": "application/json",
                 "Authorization": `Bearer ${user.token}`
             },
-            body: JSON.stringify({title, image, price})
+            body: JSON.stringify({_id: id, title, image, price})
         })
-        console.log("addToWishList: ", title, image, price)
-        console.log(response)
         const json = await response.json()
 
         if(response.ok){
@@ -23,7 +22,6 @@ export default function useWishListAction() {
     };
     
     const deleteFromWishList = async (id) => {
-        console.log("deleteFromWishList: ", id)
         const response = await fetch(`/api/wishlist/${id}`, {
             method: "DELETE",
             headers: {

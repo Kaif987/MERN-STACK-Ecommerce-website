@@ -4,6 +4,10 @@ const Schema = mongoose.Schema
 
 const WishListItemSchema = Schema(
     {
+        _id: {
+            type: String,
+            default: () => new mongoose.Types.ObjectId().toString()
+        },
         image: {type: String, required: true}, 
         title: {type: String, required: true}, 
         price: {type: Number, required: true},

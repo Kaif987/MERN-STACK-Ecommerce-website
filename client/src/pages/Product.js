@@ -5,8 +5,8 @@ const Product = ({product, isFavorite}) => {
     const {addToWishList, deleteFromWishList} = useWishListAction()
 
     const toggleFavorite = () => {
-        const {title, image, price, id} = product
-        isFavorite ? deleteFromWishList(id) : addToWishList(title, image, price)
+    const {title, image, price, id} = product
+        isFavorite ? deleteFromWishList(id) : addToWishList(id, title, image, price)
     }
     
     return ( 
