@@ -1,17 +1,19 @@
-import { useState } from "react";
-import star from "../Images/star.svg"
-import solid_star from "../Images/solid_star.svg"
+import useWishListAction from "../Hooks/useWishListAction";
 
-const Product = ({product, isFavorite, handleToggle}) => {
+const Product = ({product, isFavorite}) => {
 
+    const {addToWishList, deleteFromWishList} = useWishListAction()
+
+    const toggleFavorite = () => {
+    const {title, image, price, id} = product
+        isFavorite ? deleteFromWishList(id) : addToWishList(id, title, image, price)
+    }
     
     return ( 
         <div className="w-full h-full">
             <div className="relative h-full border px-4 pb-2 border-grayish ">
                 <button className="absolute left-3 top-3 "
-                onClick={() =>{ 
-                    handleToggle(product)
-                }}
+                onClick={toggleFavorite}
                 >
                     {isFavorite ?
                     <svg xmlns="http://www.w3.org/2000/svg"

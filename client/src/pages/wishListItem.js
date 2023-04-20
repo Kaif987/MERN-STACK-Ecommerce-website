@@ -1,4 +1,11 @@
-const WishListItem = ({item, handleToggle, addToCart}) => {
+import useCartAction from "../Hooks/useCartAction";
+import useWishListAction from "../Hooks/useWishListAction";
+
+const WishListItem = ({item}) => {
+
+    const {addToCart} = useCartAction()
+    const {deleteFromWishList} = useWishListAction()
+
     return ( 
         <div className="bg-grayish px-3 pt-5 mt-4">
             <div className="relative flex gap-2 border-b pb-2">
@@ -15,7 +22,7 @@ const WishListItem = ({item, handleToggle, addToCart}) => {
             </div>
             <div className="flex justify-between py-4">
                 <button className="capitalize text-sm hover:text-red-400"
-                onClick={() => handleToggle(item)}
+                onClick={() => deleteFromWishList(item._id)}
                 >remove</button>
                 <button 
                 onClick={() => addToCart(item)}

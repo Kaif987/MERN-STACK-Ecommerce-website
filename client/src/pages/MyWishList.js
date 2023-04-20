@@ -1,17 +1,11 @@
-import hamburgermenu from "../Images/hamburgermenu.svg"
-import logo from "../Images/logo.png"
-import cart from "../Images/cart.svg"
-import home from "../Images/Home.svg"
-import search from "../Images/search.svg"
-import User from "../Images/User.svg"
-import favorite from "../Images/favorite.svg"
-import {Link} from "react-router-dom"
 import WishListItem from "./wishListItem"
 import Layout from "./Layout"
+import {useWishListContext} from "../Hooks/useWishListContext"
 
-const MyWishList = ({favorites, handleToggle, addToCart}) => {
-    console.log(favorites)
+const MyWishList = ({handleToggle}) => {
     const dateToday = new Date()
+    const {wishlist} = useWishListContext()
+
     return ( 
     <Layout>
         <div>
@@ -23,8 +17,8 @@ const MyWishList = ({favorites, handleToggle, addToCart}) => {
             </div>
             <div className="flex flex-col mb-20">
                 {
-                    favorites.map((item,index) =>{
-                        return <WishListItem key={index} item={item} addToCart={addToCart} handleToggle={handleToggle}/>
+                    wishlist.map((item,index) =>{
+                        return <WishListItem key={index} item={item} handleToggle={handleToggle}/>
                     })
                 }
             </div>            

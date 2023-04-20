@@ -20,7 +20,7 @@ export default function useSignup() {
         })
 
         const json = await response.json()
-        console.log(json)
+        (json)
 
         if(!response.ok){
             setError(json.error)

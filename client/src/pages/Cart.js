@@ -1,19 +1,22 @@
+import { useCartContext } from "../Hooks/useCartContext";
 import IndividualCartItems from "./IndividualCartItems";
 import Layout from "./Layout";
 
-const Cart = ({cartItems, buySameItem, removeSameItem}) => {
+
+const Cart = () => {
+
+    const {cart} = useCartContext()
 
     const calculateSubTotal = () =>{
-        return cartItems.reduce((accumulator, item) => accumulator + item.item.price * item.count, 0)
+        return cart.reduce((accumulator, item) => accumulator + item.price * item.count, 0)
     }
 
     const calculateDiscount = () =>{
-        return cartItems.reduce((accumulator, item) => accumulator + (item.item.price * item.count) * 0.15 , 0)
+        return cart.reduce((accumulator, item) => accumulator + (item.price * item.count) * 0.15 , 0)
     }
-
     
     const calculateVAT = () =>{
-        return cartItems.reduce((accumulator, item) => accumulator + (item.item.price * item.count) * 0.13 , 0)
+        return cart.reduce((accumulator, item) => accumulator + (item.price * item.count) * 0.13 , 0)
     }
 
     const calculateTotal = () =>{
@@ -29,9 +32,9 @@ const Cart = ({cartItems, buySameItem, removeSameItem}) => {
                 <h1>My Cart</h1>
             </div>
             <div className="mt-4 flex flex-col gap-3">
-                {cartItems.map((item, index) =>{
+                {cart.map((item, index) =>{
                     return (
-                        <IndividualCartItems key={index} item={item.item} count={item.count} buySameItem= {buySameItem} removeSameItem={removeSameItem} />
+                        <IndividualCartItems key={index} item={item} />
                     )
                 })}
                 <div className="mb-20 bg-grayish p-2 text-sm">

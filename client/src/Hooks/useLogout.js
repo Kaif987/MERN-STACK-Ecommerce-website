@@ -11,5 +11,5 @@ export default function useLogout() {
         navigate("/login")
     }
 
-    return {logout}
+    return {logout} 
 }
