@@ -1,7 +1,7 @@
 import useCartAction from "../Hooks/useCartAction";
 import useWishListAction from "../Hooks/useWishListAction";
 
-const WishListItem = ({item, handleToggle}) => {
+const WishListItem = ({item}) => {
 
     const {addToCart} = useCartAction()
     const {deleteFromWishList} = useWishListAction()

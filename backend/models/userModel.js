@@ -41,7 +41,7 @@ userSchema.statics.signup = async function (username, email, password){
 
 userSchema.statics.login = async function (email, password){
     
-if(!email || !password) {
+    if(!email || !password) {
         throw Error("All the fields must be filled")
     }
 

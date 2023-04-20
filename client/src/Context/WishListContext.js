@@ -12,7 +12,10 @@ const wishListReducer = (state, action) =>{
             return {wishlist: [action.payload, ...state.wishlist]}
 
         case "DELETE_FROM_WISHLIST":
-            return {wishlist: state.wishlist.filter((item) => item._id !== action.payload)}
+            return {wishlist: state.wishlist.filter((item) => {
+                console.log(item._id != action.payload)
+                return item._id != action.payload
+            })}
             
         default :
             return state
