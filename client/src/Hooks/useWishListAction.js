@@ -1,12 +1,13 @@
 import { useWishListContext } from "./useWishListContext";
 import { useUserContext } from "./useUserContext";
+import { BASE_URL } from "../Service/helper"
 
 export default function useWishListAction() {
     const {user} = useUserContext()
     const { wishlist, dispatch } = useWishListContext();
     
     const addToWishList = async (id, title, image, price) => {
-        const response = await fetch(`http://localhost:5000/api/wishlist/`, {
+        const response = await fetch(`${BASE_URL}/api/wishlist/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

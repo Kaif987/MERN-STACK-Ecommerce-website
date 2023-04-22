@@ -1,5 +1,6 @@
 import React,{ useState} from 'react'
 import { useUserContext } from './useUserContext'
+import { BASE_URL } from '../Service/helper'
 
 export default function useLogin() {
     const [loading, setLoading] = useState(false)
@@ -12,7 +13,7 @@ export default function useLogin() {
         setLoading(true)
         setError(null)
 
-        const response = await fetch("/api/users/login", {
+        const response = await fetch(`${BASE_URL}/api/users/login`, {
             method: "POST",
             headers:{
             "Content-Type": "application/json"

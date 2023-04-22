@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useUserContext } from './useUserContext'
+import { BASE_URL } from '../Service/helper'
 
 
 export default function useSignup() {
@@ -11,7 +12,7 @@ export default function useSignup() {
         setLoading(true)
         setError(null)
 
-        const response = await fetch("/api/users/signup", {
+        const response = await fetch(`${BASE_URL}/api/users/signup`, {
             method: "POST",
             headers:{
             "Content-Type": "application/json"
@@ -20,7 +21,7 @@ export default function useSignup() {
         })
 
         const json = await response.json()
-        (json)
+        
 
         if(!response.ok){
             setError(json.error)

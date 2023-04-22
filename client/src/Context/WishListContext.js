@@ -1,5 +1,6 @@
 import {createContext, useReducer, useEffect} from "react"
 import { useUserContext } from "../Hooks/useUserContext"
+import { BASE_URL } from "../Service/helper"
 
 export const WishListContext = createContext()
 
@@ -13,7 +14,6 @@ const wishListReducer = (state, action) =>{
 
         case "DELETE_FROM_WISHLIST":
             return {wishlist: state.wishlist.filter((item) => {
-                console.log(item._id != action.payload)
                 return item._id != action.payload
             })}
             
@@ -33,7 +33,7 @@ export const WishListContextProvider = ({children}) =>{
         if(!user) return
 
         const fetchWishList = async () =>{
-            const res = await fetch("http://localhost:5000/api/wishlist/", {
+            const res = await fetch(`${BASE_URL}/api/wishlist/`, {
                 headers:{
                     "Authorization": `Bearer ${user.token}` 
                 }
