@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import useLogout from '../Hooks/useLogout'
 import "../Style/profile.css"
 import Popup from '../Components/Popup'
+import { BASE_URL } from '../Service/helper'
 
 export default function Profile() {
     const {user} = useUserContext()
@@ -15,7 +16,7 @@ export default function Profile() {
 
     useEffect(() =>{
         async function fetchProfile(){
-            const response = await fetch("/api/profile", {
+            const response = await fetch(`${BASE_URL}/api/profile`, {
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",

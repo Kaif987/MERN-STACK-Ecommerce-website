@@ -1,12 +1,13 @@
 import { useCartContext } from './useCartContext'
 import { useUserContext } from './useUserContext'
+import { BASE_URL } from '../Service/helper'
 
 export default function useCartAction() {
     const { dispatch } = useCartContext()
     const {user} = useUserContext()   
 
     const addToCart = async (item) => {
-        const response = await fetch('http://localhost:5000/api/cart/', {
+        const response = await fetch(`${BASE_URL}/api/cart/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ export default function useCartAction() {
     }
     
     const removeFromCart = (id) => {
-        fetch(`http://localhost:5000/api/cart/${id}`, {
+        fetch(`${BASE_URL}/api/cart/${id}`, {
             method: 'DELETE',
             headers: {
                 "Authorization": `Bearer ${user.token}`
@@ -32,7 +33,7 @@ export default function useCartAction() {
     }
     
     const increaseQuantity = (item) => {
-        fetch(`/api/cart/${item._id}`, {
+        fetch(`${BASE_URL}/api/cart/${item._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -45,7 +46,7 @@ export default function useCartAction() {
     }
     
     const decreaseQuantity = (item) => {
-        fetch(`/api/cart/${item._id}`, {
+        fetch(`${BASE_URL}/api/cart/${item._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

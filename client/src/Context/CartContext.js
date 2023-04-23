@@ -1,6 +1,7 @@
 import {createContext, useReducer, useEffect} from "react"
 import { useCartContext } from "../Hooks/useCartContext"
 import { useUserContext } from "../Hooks/useUserContext"
+import { BASE_URL } from "../Service/helper"
 
 export const CartContext = createContext()
 
@@ -34,7 +35,7 @@ export const CartContextProvider = ({children}) =>{
         if(!user) return
 
         const fetchCart = async () =>{
-            const res = await fetch("http://localhost:5000/api/cart/", {
+            const res = await fetch(`${BASE_URL}/api/cart/`, {
                 headers:{
                     "Authorization": `Bearer ${user.token}` 
                 }

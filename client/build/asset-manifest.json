@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fe784875.css",
+    "main.js": "/static/js/main.56d28431.js",
+    "static/media/her.png": "/static/media/her.ae9aa3de57ecc27e766b.png",
+    "static/media/him.png": "/static/media/him.a58df311d1ec65a4e160.png",
+    "static/media/jewelery.jpg": "/static/media/jewelery.3e1ef44a1bf181d0f81f.jpg",
+    "static/media/electronics.jpg": "/static/media/electronics.13862296a80763dc983a.jpg",
+    "static/media/Home.svg": "/static/media/Home.8d2c5d9bc699e6d20eb5fde97d1fe2b3.svg",
+    "static/media/cart.svg": "/static/media/cart.bc8194857e7b77d0d2892fcb3cb7f9fa.svg",
+    "static/media/filter.svg": "/static/media/filter.d52173d51e3d4d67c9257993726cf747.svg",
+    "static/media/favorite.svg": "/static/media/favorite.84f71784086f79a2f871276d8c0ea87d.svg",
+    "static/media/search.svg": "/static/media/search.ee3993a50d6a0fe50550506583d64332.svg",
+    "static/media/lock.svg": "/static/media/lock.066b1bfbe6373df197f920963bdd9bbc.svg",
+    "static/media/User.svg": "/static/media/User.97040a601154adbbab64fc8c3ab0ff46.svg",
+    "index.html": "/index.html",
+    "static/media/hamburgermenu.svg": "/static/media/hamburgermenu.9c6eb65c54df5b369c30e41fb12c574f.svg",
+    "static/media/back-icon.svg": "/static/media/back-icon.739aed6a2a1ef5819e954df55345503f.svg",
+    "static/media/Close.svg": "/static/media/Close.612a9043556907fee422ffae34c9e768.svg",
+    "main.fe784875.css.map": "/static/css/main.fe784875.css.map",
+    "main.56d28431.js.map": "/static/js/main.56d28431.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe784875.css",
+    "static/js/main.56d28431.js"
+  ]
+}

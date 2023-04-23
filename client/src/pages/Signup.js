@@ -19,6 +19,7 @@ const Signup = () => {
         e.preventDefault()
         if(passwordError.length) return
         await fetchUser(username, email, password)
+        navigate("/homepage")
     }
 
     const handlePasswordChange = (event) => {
