@@ -4,7 +4,6 @@ const mongoose = require("mongoose")
 const authRoutes = require("./routes/auth")
 const cartRoutes = require("./routes/cart")
 const User = require("./models/userModel")
-const wishListRoutes = require("./routes/wishlist")
 const cors = require("cors")
 const app = express()
 
@@ -26,7 +25,6 @@ connection.once("open", () =>{
 
 app.use("/api/users", authRoutes)
 app.use("/api/cart", cartRoutes)
-app.use("/api/wishlist", wishListRoutes)
 
 app.post("/api/profile/", async (req, res) =>{
     const {email} = req.body

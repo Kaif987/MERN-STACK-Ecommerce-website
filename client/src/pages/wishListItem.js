@@ -4,7 +4,7 @@ import useWishListAction from "../Hooks/useWishListAction";
 const WishListItem = ({item}) => {
 
     const {addToCart} = useCartAction()
-    const {deleteFromWishList} = useWishListAction()
+    const {removeFromWishList} = useWishListAction()
 
     return ( 
         <div className="bg-grayish px-3 pt-5 mt-4">
@@ -22,7 +22,7 @@ const WishListItem = ({item}) => {
             </div>
             <div className="flex justify-between py-4">
                 <button className="capitalize text-sm hover:text-red-400"
-                onClick={() => deleteFromWishList(item._id)}
+                onClick={() => removeFromWishList(item.id)}
                 >remove</button>
                 <button 
                 onClick={() => addToCart(item)}
