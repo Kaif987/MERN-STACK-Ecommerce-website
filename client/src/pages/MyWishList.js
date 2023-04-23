@@ -2,7 +2,7 @@ import WishListItem from "./wishListItem"
 import Layout from "./Layout"
 import {useWishListContext} from "../Hooks/useWishListContext"
 
-const MyWishList = ({handleToggle}) => {
+const MyWishList = () => {
     const dateToday = new Date()
     const {wishlist} = useWishListContext()
 
@@ -18,7 +18,7 @@ const MyWishList = ({handleToggle}) => {
             <div className="flex flex-col mb-20">
                 {
                     wishlist.map((item,index) =>{
-                        return <WishListItem key={index} item={item} handleToggle={handleToggle}/>
+                        return <WishListItem key={index} item={item} />
                     })
                 }
             </div>            

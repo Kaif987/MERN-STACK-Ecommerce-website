@@ -1,6 +1,5 @@
 import {createContext, useReducer, useEffect} from "react"
 import { useUserContext } from "../Hooks/useUserContext"
-import { BASE_URL } from "../Service/helper"
 
 export const WishListContext = createContext()
 
@@ -10,11 +9,16 @@ const wishListReducer = (state, action) =>{
             return {wishlist: action.payload}
 
         case "ADD_TO_WISHLIST":
+            localStorage.setItem("wishlist", JSON.stringify([...state.wishlist, action.payload]))
             return {wishlist: [action.payload, ...state.wishlist]}
 
         case "DELETE_FROM_WISHLIST":
+            localStorage.setItem("wishlist", JSON.stringify(state.wishlist.filter((item) => {
+                return item.id != action.payload
+            })))
+            
             return {wishlist: state.wishlist.filter((item) => {
-                return item._id != action.payload
+                return item.id != action.payload
             })}
             
         default :
@@ -23,7 +27,7 @@ const wishListReducer = (state, action) =>{
 }
 
 export const WishListContextProvider = ({children}) =>{
-    const [state , dispatch] = useReducer(wishListReducer, {wishlist: null})
+    const [state , dispatch] = useReducer(wishListReducer, {wishlist: []})
 
     console.log("WishListContext State: ", state)
 
@@ -32,16 +36,11 @@ export const WishListContextProvider = ({children}) =>{
     useEffect(() =>{
         if(!user) return
 
-        const fetchWishList = async () =>{
-            const res = await fetch(`${BASE_URL}/api/wishlist/`, {
-                headers:{
-                    "Authorization": `Bearer ${user.token}` 
-                }
-                })
-                
-            const json = await res.json()
-            if(res.ok){
-                dispatch({type: "SET_WISHLIST", payload: json})
+        const fetchWishList = () =>{    
+            const wishlist = JSON.parse(localStorage.getItem("wishlist"))
+
+            if(wishlist){
+                dispatch({type: "SET_WISHLIST", payload: wishlist})
             }
         }
         
